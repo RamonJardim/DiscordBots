@@ -1,0 +1,20 @@
+C:\Users\ramon\Desktop\discordBot\C#\botDiscord\wushuBOT\bin\Debug\netcoreapp2.1\wushuBOT.deps.json
+C:\Users\ramon\Desktop\discordBot\C#\botDiscord\wushuBOT\bin\Debug\netcoreapp2.1\wushuBOT.runtimeconfig.json
+C:\Users\ramon\Desktop\discordBot\C#\botDiscord\wushuBOT\bin\Debug\netcoreapp2.1\wushuBOT.runtimeconfig.dev.json
+C:\Users\ramon\Desktop\discordBot\C#\botDiscord\wushuBOT\bin\Debug\netcoreapp2.1\wushuBOT.dll
+C:\Users\ramon\Desktop\discordBot\C#\botDiscord\wushuBOT\obj\Debug\netcoreapp2.1\wushuBOT.csprojAssemblyReference.cache
+C:\Users\ramon\Desktop\discordBot\C#\botDiscord\wushuBOT\obj\Debug\netcoreapp2.1\wushuBOT.AssemblyInfoInputs.cache
+C:\Users\ramon\Desktop\discordBot\C#\botDiscord\wushuBOT\obj\Debug\netcoreapp2.1\wushuBOT.AssemblyInfo.cs
+C:\Users\ramon\Desktop\discordBot\C#\botDiscord\wushuBOT\bin\Debug\netcoreapp2.1\wushuBOT.pdb
+C:\Users\ramon\Desktop\discordBot\C#\botDiscord\wushuBOT\obj\Debug\netcoreapp2.1\wushuBOT.dll
+C:\Users\ramon\Desktop\discordBot\C#\botDiscord\wushuBOT\obj\Debug\netcoreapp2.1\wushuBOT.pdb
+C:\Users\ramon.neres.t.jardim\Desktop\discordBot 2\C#\botDiscord\wushuBOT\bin\Debug\netcoreapp2.1\wushuBOT.deps.json
+C:\Users\ramon.neres.t.jardim\Desktop\discordBot 2\C#\botDiscord\wushuBOT\bin\Debug\netcoreapp2.1\wushuBOT.runtimeconfig.json
+C:\Users\ramon.neres.t.jardim\Desktop\discordBot 2\C#\botDiscord\wushuBOT\bin\Debug\netcoreapp2.1\wushuBOT.runtimeconfig.dev.json
+C:\Users\ramon.neres.t.jardim\Desktop\discordBot 2\C#\botDiscord\wushuBOT\bin\Debug\netcoreapp2.1\wushuBOT.dll
+C:\Users\ramon.neres.t.jardim\Desktop\discordBot 2\C#\botDiscord\wushuBOT\bin\Debug\netcoreapp2.1\wushuBOT.pdb
+C:\Users\ramon.neres.t.jardim\Desktop\discordBot 2\C#\botDiscord\wushuBOT\obj\Debug\netcoreapp2.1\wushuBOT.csprojAssemblyReference.cache
+C:\Users\ramon.neres.t.jardim\Desktop\discordBot 2\C#\botDiscord\wushuBOT\obj\Debug\netcoreapp2.1\wushuBOT.AssemblyInfoInputs.cache
+C:\Users\ramon.neres.t.jardim\Desktop\discordBot 2\C#\botDiscord\wushuBOT\obj\Debug\netcoreapp2.1\wushuBOT.AssemblyInfo.cs
+C:\Users\ramon.neres.t.jardim\Desktop\discordBot 2\C#\botDiscord\wushuBOT\obj\Debug\netcoreapp2.1\wushuBOT.dll
+C:\Users\ramon.neres.t.jardim\Desktop\discordBot 2\C#\botDiscord\wushuBOT\obj\Debug\netcoreapp2.1\wushuBOT.pdb
