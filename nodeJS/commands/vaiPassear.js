@@ -6,7 +6,7 @@ const states = require('../util/states');
 module.exports = {
 	name: 'vaiPassear',
 	description: 'Impede/permite o infeliz de entrar em qualquer canal de voz.',
-	execute(message, args) {
+	async execute(message, args) {
         if (message.mentions.everyone) message.reply('muito esperto da sua parte...');
         else if (message.mentions.members.size == 0) message.reply(`Quem é ${args}???`);
         else {

@@ -1,3 +1,4 @@
 module.exports = {
-    "strollingMembers": {}
+    strollingMembers: {},
+    musicQueue: new Map()
 }
