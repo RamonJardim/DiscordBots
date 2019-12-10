@@ -8,9 +8,18 @@ dotenv.config();
 
 var server_port = process.env.YOUR_PORT || process.env.PORT || 60;
 var server_host = process.env.YOUR_HOST || '0.0.0.0';
-http.createServer(function (request, response) { }).listen(server_port, server_host, function () {
+http.createServer(function (req, res) {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.write('Wushuu online!');
+    res.end();
+}).listen(server_port, server_host, function () {
     console.log('Listening on port %d', server_port);
 });
+
+setInterval(function() {
+    http.get("https://wushuu-bot-nodejs.herokuapp.com/");
+}, 300000);
+
 
 const client = new Discord.Client();
 const APIKey = process.env.DISCORD_BOT_SECRET;
@@ -23,7 +32,7 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-const prefix = '=';
+const prefix = ';';
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     console.log(`Connected in ${client.guilds.size} servers:`)

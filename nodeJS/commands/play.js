@@ -1,3 +1,4 @@
+const ytsr = require('ytsr');
 const ytdl = require('ytdl-core');
 const states = require('../util/states');
 
@@ -8,7 +9,13 @@ module.exports = {
         const voiceChannel = message.member.voiceChannel;
         if (!voiceChannel) return message.channel.send('Você não está em um canal de voz.');
 
-        const songInfo = await ytdl.getInfo(args[0]);
+        const songData = (await ytsr(args.join(' '), {limit: 1})).items[0];
+        const songLink = songData.link;
+
+        message.channel.send(`Tocando ${songData.title}`);
+        message.channel.send(songLink);
+
+        const songInfo = await ytdl.getInfo(songLink);
         const song = {
             title: songInfo.title,
             url: songInfo.video_url
