@@ -3,6 +3,8 @@ const https = require('https');
 const dotenv = require('dotenv');
 const Discord = require('discord.js');
 const states = require('./util/states');
+const consts = require('./util/constants.js');
+const functions = require('./util/functions.js');
 
 dotenv.config();
 
@@ -16,7 +18,7 @@ https.createServer(function (req, res) {
     console.log('Listening on port %d', server_port);
 });
 
-setInterval(function() {
+setInterval(function () {
     https.get("https://wushuu-bot-nodejs.herokuapp.com/");
 }, 300000);
 
@@ -32,7 +34,7 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-const prefix = ';';
+const prefix = consts.prefix;
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     console.log(`Connected in ${client.guilds.size} servers:`)
@@ -52,9 +54,22 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 });
 
 client.on('message', async message => {
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
+    if (message.author.bot) return;
 
     const args = message.content.slice(prefix.length).split(/ +/);
+    if (!message.content.startsWith(prefix) && states.pasqualeMode) {
+
+        functions.grammarCheck(message.content).then(
+            msg => {
+                msg.matches.forEach(element => {
+                    message.reply(element.message);
+                });
+
+            }).catch(error => console.log(error));
+
+
+    }
+
     const command = args.shift();
 
     if (!client.commands.has(command)) return;

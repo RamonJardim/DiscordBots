@@ -1,4 +1,5 @@
 module.exports = {
     strollingMembers: {},
-    musicQueue: new Map()
+    musicQueue: new Map(),
+    pasqualeMode: false
 }
