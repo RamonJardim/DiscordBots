@@ -11,6 +11,7 @@ using wushuBOT.Models.Steam;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Threading;
+using DotNetEnv;
 
 namespace wushuBOT
 {
@@ -90,7 +91,7 @@ namespace wushuBOT
         [Command("getGamesID")]
         private async Task getGamesID(string steamID1, string steamID2)
         {
-            string accessKey = "05F8B01D40AA050D30C0620C5C996505";
+            string accessKey = DotNetEnv.Env.GetString("STEAM_API_KEY");
 
             HttpClient client = new HttpClient();
 
