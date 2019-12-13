@@ -69,16 +69,19 @@ client.on('message', async message => {
 
 
     }
+    if (message.content.startsWith(prefix)) {
 
-    const command = args.shift();
+        const command = args.shift();
 
-    if (!client.commands.has(command)) return;
+        if (!client.commands.has(command)) return;
 
-    try {
-        client.commands.get(command).execute(message, args);
-    } catch (error) {
-        message.channel.send(`Quebrei, culpem o Ramon`);
-        console.error(error);
+        try {
+            client.commands.get(command).execute(message, args);
+        } catch (error) {
+            message.channel.send(`Quebrei, culpem o Ramon`);
+            console.error(error);
+        }
+
     }
 
 });
