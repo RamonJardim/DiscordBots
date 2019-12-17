@@ -24,7 +24,7 @@ var server_port = process.env.YOUR_PORT || process.env.PORT || 8089;
 const app = require('./app');
 
 app.listen(server_port, () => {
-    console.log('App is running on port ' + server_port);
+    console.log('App is running');
 })
 
 setInterval(function () {
