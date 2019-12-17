@@ -8,6 +8,7 @@ const functions = require('./util/functions.js');
 
 dotenv.config();
 
+
 var server_port = process.env.YOUR_PORT || process.env.PORT || 60;
 var server_host = process.env.YOUR_HOST || '0.0.0.0';
 https.createServer(function (req, res) {
@@ -18,12 +19,9 @@ https.createServer(function (req, res) {
     console.log('Listening on port %d', server_port);
 });
 
-setInterval(function () {
-    https.get("https://wushuu-bot-nodejs.herokuapp.com/");
-}, 300000);
-
 
 const client = new Discord.Client();
+consts.client = client;
 const APIKey = process.env.DISCORD_BOT_SECRET;
 
 client.commands = new Discord.Collection();

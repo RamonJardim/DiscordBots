@@ -3,8 +3,8 @@ const functions = require('../util/functions.js')
 
 module.exports = {
 	name: 'vsfhirohen',
-	description: 'Retira o famigerado ursinho do voice.',
+	description: 'Manda o famigerado ursinho para a sala de quem é engraçado.',
 	execute(message, args) {
-        functions.moveMemberToChannel(constants.yeyID, constants.kirschID, null)
+        functions.moveMemberToChannel(constants.yeyID, constants.ursinhoID, constants.theMaciotaID);
 	}
 };
