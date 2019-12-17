@@ -5,27 +5,18 @@ const Discord = require('discord.js');
 const states = require('./util/states');
 const consts = require('./util/constants.js');
 const functions = require('./util/functions.js');
-const express = require('express');
-
-var channels = [];
 
 dotenv.config();
 
-var server_port = process.env.YOUR_PORT || process.env.PORT || 8089;
-// var server_host = process.env.YOUR_HOST || '0.0.0.0';
-// https.createServer(function (req, res) {
-//     res.writeHead(200, { 'Content-Type': 'text/plain' });
-//     res.write('Wushuu online!');
-//     res.end();
-// }).listen(server_port, server_host, function () {
-//     console.log('Listening on port %d', server_port);
-// });
-
-const app = require('./app');
-
-app.listen(server_port, () => {
-    console.log('App is running');
-})
+var server_port = process.env.YOUR_PORT || process.env.PORT || 60;
+var server_host = process.env.YOUR_HOST || '0.0.0.0';
+https.createServer(function (req, res) {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.write('Wushuu online!');
+    res.end();
+}).listen(server_port, server_host, function () {
+    console.log('Listening on port %d', server_port);
+});
 
 setInterval(function () {
     https.get("https://wushuu-bot-nodejs.herokuapp.com/");
@@ -95,33 +86,4 @@ client.on('message', async message => {
 
 });
 
-client.login(APIKey).then(() => {
-
-    client.guilds.first().channels.forEach((c) => {
-        channels.push({ cdChannel: c.id, nmChannel: c.name });
-    })
-
-    app.use("/getChannels", async (req, res, next) => {
-        res.send(channels)
-    })
-
-    app.post("/enviarFrase", async (req, res, next) => {
-
-        const cdChannel = req.body.cdChannel;
-        const message = req.body.dsMsg;
-
-        const chan = client.guilds.first().channels.get(cdChannel);
-
-        chan.send(message);
-        res.send({"response":"Ok"});
-
-    })
-
-    app.get("/getCommands", async (req, res, next) => {
-        client.guilds.first()
-    })
-
-})
-
-
-
+client.login(APIKey);
