@@ -1,5 +1,4 @@
 const functions = require('../util/functions.js')
-const constants = require('../util/constants');
 const states = require('../util/states');
 
 
@@ -12,13 +11,13 @@ module.exports = {
         else {
             message.mentions.members.forEach(victm => {
                 if (states.strollingMembers[victm.id] == true) {
-                    if(victm.id != message.author.id || message.author.id == constants.kirschID){
+                    if(victm.id != message.author.id || functions.isAdm(message.member)){
                         states.strollingMembers[victm.id] = false;
                         message.channel.send(`${args} não está mais passeando`);
                     }
                     else message.channel.send(`kkkjjkjkkj`);
                 }
-                else if (message.author.id == constants.kirschID) {
+                else if (functions.isAdm(message.member)) {
                     states.strollingMembers[victm.id] = true;
                     victm.setVoiceChannel(null);
                     message.channel.send(`${args} foi passear`);
