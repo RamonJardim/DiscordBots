@@ -28,12 +28,8 @@ module.exports = {
                 }
                 else {
                     // message.channel.send({files:["https://vignette.wikia.nocookie.net/yugioh/images/2/2f/MirrorForce-YS18-EN-C-1E.png/revision/latest?cb=20180712164455"]});
-                    
-                    var user = "<@!";
-                    user += message.member.id;
-                    user += ">"
 
-                    message.channel.send(user + ' foi passear');
+                    message.channel.send(message.member + ' foi passear');
                     states.strollingMembers[message.member.id] = true;
                     message.member.setVoiceChannel(null);
                 }
