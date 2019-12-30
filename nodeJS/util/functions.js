@@ -28,7 +28,9 @@ module.exports = {
             }
         },
     'isAdm':
-        async function (member) {
-            return message.member.roles.find(role => role.hasPermission('ADMINISTRATOR'));
+        function (member) {
+            console.log(member.hasPermission('ADMINISTRATOR'));
+            return member.hasPermission('ADMINISTRATOR');
         }
+
 }
