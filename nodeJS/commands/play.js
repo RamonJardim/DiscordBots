@@ -1,5 +1,5 @@
 const ytsr = require('ytsr');
-const ytdl = require('ytdl-core');
+const ytdl = require('ytdl-core-discord');
 const states = require('../util/states');
 
 module.exports = {
@@ -53,7 +53,7 @@ module.exports = {
     }
 }
 
-function play(guild, song, message) {
+async function play(guild, song, message) {
     const serverQueue = states.musicQueue.get(guild.id);
     if (!song) {
         serverQueue.voiceChannel.leave();
@@ -61,7 +61,7 @@ function play(guild, song, message) {
         return;
     }
 
-    const dispatcher = serverQueue.connection.playStream(ytdl(song.url, {quality: 'lowestaudio'}))
+    const dispatcher = serverQueue.connection.playOpusStream(await ytdl(song.url))
         .on('end', () => {
             serverQueue.songs.shift();
             play(guild, serverQueue.songs[0], message);
