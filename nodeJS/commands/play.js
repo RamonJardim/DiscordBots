@@ -7,13 +7,10 @@ module.exports = {
     description: 'Busca o texto no youtube e toca no canal de voz.',
     async execute(message, args) {
         const voiceChannel = message.member.voiceChannel;
-        if (!voiceChannel) return message.channel.send('Você não está em um canal de voz.');
-
-        const songData = (await ytsr(args.join(' '), {limit: 1})).items[0];
+        if (!voiceChannel) return message.reply('Você não está em um canal de voz.');
+        if (args.length == 0) return message.reply('Tocar o que?');
+        const songData = (await ytsr(args.join(' '), { limit: 1 })).items[0];
         const songLink = songData.link;
-
-        message.channel.send(`Tocando ${songData.title}`);
-        message.channel.send(songLink);
 
         const songInfo = await ytdl.getInfo(songLink);
         const song = {
@@ -21,30 +18,42 @@ module.exports = {
             url: songInfo.video_url
         };
 
-        const queueConstruct = {
-            textChannel: message.channel,
-            voiceChannel: voiceChannel,
-            connection: null,
-            songs: [],
-            volume: 5,
-            playing: true,
-        };
-        states.musicQueue.set(message.guild.id, queueConstruct);
-        queueConstruct.songs.push(song);
+        var queueConstruct = states.musicQueue.get(message.guild.id);
+        if (queueConstruct && queueConstruct.songs.length > 0) {
+            queueConstruct.songs.push(song);
+            message.channel.send(`${songData.title} adicionada à fila`);
+        }
+        else {
+            message.channel.send(`Tocando ${songData.title}`);
+            message.channel.send(songLink);
 
-        try {
-            var connection = await voiceChannel.join();
-            queueConstruct.connection = connection;
-            play(message.guild, queueConstruct.songs[0]);
-        } catch (err) {
-            console.log(err);
-            states.musicQueue.delete(message.guild.id);
-            return message.channel.send(err);
+            queueConstruct = {
+                textChannel: message.channel,
+                voiceChannel: voiceChannel,
+                connection: null,
+                songs: [],
+                volume: 5,
+                playing: true,
+            };
+            states.musicQueue.set(message.guild.id, queueConstruct);
+            queueConstruct = states.musicQueue.get(message.guild.id);
+            queueConstruct.songs.push(song);
+
+
+            try {
+                var connection = await voiceChannel.join();
+                queueConstruct.connection = connection;
+                play(message.guild, queueConstruct.songs[0]);
+            } catch (err) {
+                console.log(err);
+                states.musicQueue.delete(message.guild.id);
+                return message.channel.send(err);
+            }
         }
     }
 }
 
-function play(guild, song) {
+function play(guild, song, message) {
     const serverQueue = states.musicQueue.get(guild.id);
     if (!song) {
         serverQueue.voiceChannel.leave();
@@ -52,10 +61,10 @@ function play(guild, song) {
         return;
     }
 
-    const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
+    const dispatcher = serverQueue.connection.playStream(ytdl(song.url, {quality: 'lowestaudio'}))
         .on('end', () => {
             serverQueue.songs.shift();
-            play(guild, serverQueue.songs[0]);
+            play(guild, serverQueue.songs[0], message);
         })
         .on('error', error => {
             console.error(error);
