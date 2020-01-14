@@ -1,4 +1,5 @@
 const states = require('../util/states.js');
+const functions = require('../util/functions.js');
 
 module.exports = {
     name: 'shutUp',
@@ -20,26 +21,18 @@ module.exports = {
                     }
                 }
                 else {
-
-                    if (!functions.isAdm(victim)) {
-                        if (!victim.voiceChannel) return message.reply(`${args} não está em um canal de voz.`);
-                        states.kickOnSpeakVictims[victim.id] = true;
-                        var connection = await victim.voiceChannel.join();
-
-                        message.channel.send(`${args} não pode falar`);
-                        await connection.playFile('../util/join.mp3', { passes: 5 });
-                        connection.on('speaking', (user, speaking) => {
-                            if (user.id == victim.id) {
-                                victim.setVoiceChannel(null);
-                            }
-                        });
+                    var connection = await victim.voiceChannel.join();
+                    if (functions.isAdm(victim)) {
+                        victim = message.member;
                     }
-                    else {
-                        message.channel.send({ files: ["https://vignette.wikia.nocookie.net/yugioh/images/2/2f/MirrorForce-YS18-EN-C-1E.png/revision/latest?cb=20180712164455"] });
-                    
-                        message.channel.send(`${message.member} não pode falar`);
-                        states.kickOnSpeakVictims[message.member.id] = true;
-                    }
+                    if (!victim.voiceChannel) return message.reply(`${args} não está em um canal de voz.`);
+                    states.kickOnSpeakVictims[victim.id] = true;
+                    message.channel.send(`${victim} não pode falar`);
+                    connection.on('speaking', (user, speaking) => {
+                        if (user.id == victim.id) {
+                            victim.setVoiceChannel(null);
+                        }
+                    });
                 }
             });
         }

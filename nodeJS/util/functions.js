@@ -29,7 +29,6 @@ module.exports = {
         },
     'isAdm':
         function (member) {
-            console.log(member.hasPermission('ADMINISTRATOR'));
             return member.hasPermission('ADMINISTRATOR');
         }
 
