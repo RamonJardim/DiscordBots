@@ -1,5 +1,5 @@
 const functions = require('../util/functions.js')
-const states = require('../util/states');
+const states = require('../util/states.js');
 
 
 module.exports = {
