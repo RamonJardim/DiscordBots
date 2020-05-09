@@ -1,3 +1,4 @@
+const { client } = require('./constants.js');
 const LanguageToolApi = require('language-grammar-api');
 
 module.exports = {
