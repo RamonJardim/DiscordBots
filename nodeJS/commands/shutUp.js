@@ -29,7 +29,7 @@ module.exports = {
                     states.kickOnSpeakVictims[victim.id] = true;
                     message.channel.send(`${victim} não pode falar`);
                     connection.on('speaking', (user, speaking) => {
-                        if (user.id == victim.id) {
+                        if (user.id == victim.id && states.kickOnSpeakVictims[victim.id] == true) {
                             victim.setVoiceChannel(null);
                         }
                     });
