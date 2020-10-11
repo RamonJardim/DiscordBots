@@ -11,8 +11,8 @@ const discordActionsController = require('./router/discordActionController')
 
 dotenv.config();
 
-var server_port = process.env.YOUR_PORT || process.env.PORT || 60;
-var server_host = process.env.YOUR_HOST || '0.0.0.0';
+// var server_port = process.env.YOUR_PORT || process.env.PORT || 60;
+// var server_host = process.env.YOUR_HOST || '0.0.0.0';
 // https.createServer(function (req, res) {
 //     res.writeHead(200, { 'Content-Type': 'text/plain' });
 //     res.write('Wushuu online!');
@@ -94,7 +94,7 @@ app.use("/discord", async (req, res, next) => {
     next();
 }, discordActionsController);
 
-app.listen(server_port || 3000, server_host, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log('App is running');
 })
 
