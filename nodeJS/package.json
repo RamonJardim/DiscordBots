@@ -2,7 +2,7 @@
   "name": "nodejs",
   "version": "1.0.0",
   "description": "WUSHUU discord bot",
-  "main": "discordBot.js",
+  "web": "discordBot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node discordBot.js"
