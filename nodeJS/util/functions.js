@@ -1,9 +1,8 @@
-const { client } = require('./constants.js');
 const LanguageToolApi = require('language-grammar-api');
 
 module.exports = {
     'moveMemberToChannel':
-        async function (serverId, memberId, channelId) {
+        async function (client,serverId, memberId, channelId) {
             const user = await client.fetchUser(memberId);
             const guild = client.guilds.find(guild => guild.id == serverId);
             var member = await guild.fetchMember(user);

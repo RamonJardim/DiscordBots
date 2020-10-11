@@ -3,7 +3,7 @@ const consts = require('../util/constants');
 module.exports = {
     name: 'help',
     description: 'Lista todos os comandos ou os detalhes de um comando específico.',
-    execute(message, args) {
+    execute(client,message, args) {
         const data = [];
         const { commands } = message.client;
 

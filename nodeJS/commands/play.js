@@ -5,7 +5,7 @@ const states = require('../util/states');
 module.exports = {
     name: 'play',
     description: 'Busca o texto no youtube e toca no canal de voz.',
-    async execute(message, args) {
+    async execute(client, message, args) {
         const voiceChannel = message.member.voiceChannel;
         if (!voiceChannel) return message.reply('Você não está em um canal de voz.');
         if (args.length == 0) return message.reply('Tocar o que?');

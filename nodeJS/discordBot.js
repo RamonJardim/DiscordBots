@@ -5,22 +5,24 @@ const Discord = require('discord.js');
 const states = require('./util/states');
 const consts = require('./util/constants.js');
 const functions = require('./util/functions.js');
+const express = require('express');
+const app = require('./app')
+const discordActionsController = require('./router/discordActionController')
 
 dotenv.config();
 
-
 var server_port = process.env.YOUR_PORT || process.env.PORT || 60;
-var server_host = process.env.YOUR_HOST || '0.0.0.0';
-https.createServer(function (req, res) {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.write('Wushuu online!');
-    res.end();
-}).listen(server_port, server_host, function () {
-    console.log('Listening on port %d', server_port);
-});
-
+// var server_host = process.env.YOUR_HOST || '0.0.0.0';
+// https.createServer(function (req, res) {
+//     res.writeHead(200, { 'Content-Type': 'text/plain' });
+//     res.write('Wushuu online!');
+//     res.end();
+// }).listen(server_port, server_host, function () {
+//     console.log('Listening on port %d', server_port);
+// });
 
 const client = new Discord.Client();
+
 consts.client = client;
 const APIKey = process.env.DISCORD_BOT_SECRET;
 
@@ -40,7 +42,7 @@ client.on('ready', () => {
         console.log(guild.name);
     })
 
-    client.user.setPresence({ game: { name: 'LoL as Zoe' }, status: 'online' })
+    client.user.setPresence({ game: { name: 'LoL as Vayne' }, status: 'online' })
         .then()
         .catch(console.error);
 });
@@ -52,6 +54,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 });
 
 client.on('message', async message => {
+
     if (message.author.bot) return;
 
     const args = message.content.slice(prefix.length).split(/ +/);
@@ -74,7 +77,7 @@ client.on('message', async message => {
         if (!client.commands.has(command)) return;
 
         try {
-            client.commands.get(command).execute(message, args);
+            client.commands.get(command).execute(client, message, args);
         } catch (error) {
             message.channel.send(`Quebrei, culpem o Ramon`);
             console.error(error);
@@ -85,3 +88,16 @@ client.on('message', async message => {
 });
 
 client.login(APIKey);
+
+app.use("/discord", async (req, res, next) => {
+    req.client = client
+    next();
+}, discordActionsController);
+
+app.listen(server_port || 3000, () => {
+    console.log('App is running');
+})
+
+app.get('/isalive', (req, res) => {
+    res.send('I am alive!');
+})

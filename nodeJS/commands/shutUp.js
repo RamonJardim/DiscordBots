@@ -4,7 +4,7 @@ const functions = require('../util/functions.js');
 module.exports = {
     name: 'shutUp',
     description: 'Se o membro marcado falar, ele é desconectado do canal de voz',
-    async execute(message, args) {
+    async execute(client, message, args) {
         if (message.mentions.everyone) message.reply('muito esperto da sua parte...');
         else if (message.mentions.members.size == 0) message.reply(`Quem é ${args}???`);
         else {
