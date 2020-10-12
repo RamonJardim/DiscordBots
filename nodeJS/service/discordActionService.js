@@ -8,6 +8,7 @@ const playMusic = function (client, playDto) {
     return new Promise(async (resolve, reject) => {
 
         const voiceChannel = client.channels.get('220201128325939200');
+        const guild = client.guilds.find(guild => guild.id == constants.yeyID);
 
         // const voiceChannel = message.member.voiceChannel;
 
@@ -50,7 +51,7 @@ const playMusic = function (client, playDto) {
             try {
                 var connection = await voiceChannel.join();
                 queueConstruct.connection = connection;
-                play(client.guild.get(constants.yeyID), queueConstruct.songs[0]);
+                play(guild, queueConstruct.songs[0]);
                 resolve(songData.title);
             } catch (err) {
                 console.log(err);
