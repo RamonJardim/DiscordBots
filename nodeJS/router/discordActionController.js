@@ -18,7 +18,7 @@ router.get("/kick/:user", async (req, res, next) => {
 
 })
 
-router.get("/play", async (req, res, next) => {
+router.post("/play", async (req, res, next) => {
 
     discordActionService.playMusic(req.client,req.body).then((results)=>{
         res.send({success: true, msg: results});
