@@ -7,12 +7,8 @@ const playMusic = function (client, playDto) {
 
     return new Promise(async (resolve, reject) => {
 
-        const voiceChannel = client.channels.get('220201128325939200');
+        const voiceChannel = client.channels.get(constants.magicID);
         const guild = client.guilds.find(guild => guild.id == constants.yeyID);
-
-        // const voiceChannel = message.member.voiceChannel;
-
-        playDto.songName = "barata dançando";
 
         if (!voiceChannel) { reject(); return; };
         if (playDto.songName == null) { reject(); return; };

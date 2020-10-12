@@ -9,6 +9,7 @@ module.exports = {
     'manosloID': '220211562663772160',
     'yuruiID': '203499888422420482',
     'vexeraID': '228537642583588864',
+    'magicID': '220201128325939200',
     'prefix': '=',
     'client': undefined
 }
