@@ -21,7 +21,7 @@ router.get("/kick/:user", async (req, res, next) => {
 router.get("/play", async (req, res, next) => {
 
     discordActionService.playMusic(req.client,req.body).then((results)=>{
-        res.send({success: true, msg: "ALO"});
+        res.send({success: true, msg: results});
     }).catch((fail)=>{
         console.log(fail);
         res.statusCode = 500;

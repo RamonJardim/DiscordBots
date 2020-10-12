@@ -7,15 +7,17 @@ const playMusic = function (client, playDto) {
 
     return new Promise(async (resolve, reject) => {
 
+        playDto.songName = "barata dançando";
+
         const voiceChannel = client.channels.get(constants.magicID);
         const guild = client.guilds.find(guild => guild.id == constants.yeyID);
 
         if (!voiceChannel) { reject(); return; };
-        if (playDto.songName == null) { reject(); return; };
+        if (playDto.songName == null) { reject("O nome da música não pode ser vazio"); return; };
         const songData = (await ytsr(playDto.songName, { limit: 1 })).items[0];
         const songLink = songData.link;
 
-        const songInfo = await ytdl.getInfo(songLink);
+        const songInfo = await ytdl.getInfo(songLink);s
         const song = {
             title: songInfo.title,
             url: songInfo.video_url
