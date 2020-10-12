@@ -17,7 +17,7 @@ const playMusic = function (client, playDto) {
         const songData = (await ytsr(playDto.songName, { limit: 1 })).items[0];
         const songLink = songData.link;
 
-        const songInfo = await ytdl.getInfo(songLink);s
+        const songInfo = await ytdl.getInfo(songLink);
         const song = {
             title: songInfo.title,
             url: songInfo.video_url
