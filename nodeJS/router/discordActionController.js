@@ -30,7 +30,7 @@ router.post("/play", async (req, res, next) => {
     
 })
 
-router.post("/stop", async (req, res, next) => {
+router.get("/stop", async (req, res, next) => {
 
     discordActionService.stopMusic().then((results)=>{
         res.send({success: true, msg: results});
