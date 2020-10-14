@@ -81,9 +81,27 @@ async function play(guild, song, message) {
 
 }
 
+const stopMusic = function () {
+
+    return new Promise((resolve, reject) => {
+
+        const serverQueue = states.musicQueue.get(constants.yeyID);
+        if (!serverQueue) reject('Não tem nada pra parar...');
+        serverQueue.connection.dispatcher.end();
+        resolve('Parei a música');
+    })
+
+
+}
+
+
+
 module.exports = {
     playMusic: (client, playDto) => {
         return playMusic(client, playDto);
+    },
+    stopMusic: ()=>{
+        return stopMusic();
     }
 }
 

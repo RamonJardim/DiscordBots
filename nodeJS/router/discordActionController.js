@@ -28,7 +28,19 @@ router.post("/play", async (req, res, next) => {
         res.send({success: false, msg: ''})
     })
     
-
 })
+
+router.post("/stop", async (req, res, next) => {
+
+    discordActionService.stopMusic().then((results)=>{
+        res.send({success: true, msg: results});
+    }).catch((fail)=>{
+        console.log(fail);
+        res.statusCode = 500;
+        res.send({success: false, msg: ''})
+    })
+    
+})
+
 
 module.exports = router;
