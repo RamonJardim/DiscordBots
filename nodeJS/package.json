@@ -21,7 +21,7 @@
     "lerolero": "^0.1.0",
     "opusscript": "0.0.7",
     "twisted": "^1.9.0",
-    "ytdl-core-discord": "github:amishshah/ytdl-core-discord#master",
+    "ytdl-core-discord": "^1.2.4",
     "ytsr": "1.0.4"
   }
 }
