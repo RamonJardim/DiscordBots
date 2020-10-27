@@ -43,7 +43,7 @@ client.on('ready', () => {
         console.log(guild.name);
     })
 
-    client.user.setPresence({ game: { name: 'LoL as Vayne' }, status: 'online' })
+    client.user.setPresence({ game: { name: 'LoL as Zoe' }, status: 'online' })
         .then()
         .catch(console.error);
 });
